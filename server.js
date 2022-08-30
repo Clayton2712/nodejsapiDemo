@@ -56,16 +56,18 @@
 // app.use(express.urlencoded())
 var express = require('express');
 var cors = require('cors');
+const bodyParser = require('body-parser');
 var  app = express();
 
 // CORS stands for Cross-Origin Resource Sharing. It allows us to relax the security
 // applied to an API
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "*"
 }
 console.log('Is our project running?');
 
 app.use(cors(corsOptions));
+app.use(bodyParser.json());
 // app object is instantiated on creation of the express server
 // use is a method to configure the middleware used by the routes
 
@@ -92,6 +94,7 @@ require("./app/routes/tutorial.routes");
 
 const PORT = process.env.PORT || 8081;
 require("./app/routes/tutorial.routes.js")(app);
+require("./app/routes/course.routes")(app);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
@@ -111,5 +114,10 @@ app.listen(PORT, () => {
 // require('./app/models/db');
 
 
-
+// Create Table if not exists `courses` (
+// id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+// title varchar(255) NOT NULL,
+// tutorialId int,
+// FOREIGN KEY (tutorialId) REFERENCES Tutorials(id)
+// )
 

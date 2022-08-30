@@ -1,6 +1,6 @@
 module.exports = {
     HOST: "localhost",
-    USER: "fortune",
-    PASSWORD: "fortune",
+    USER: "root",
+    PASSWORD: "",
     DB: "NodeJSAPI"
 }
